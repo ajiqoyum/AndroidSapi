@@ -3,6 +3,8 @@ package com.example.v01.Main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.example.v01.APIRetrofit
@@ -10,6 +12,7 @@ import com.example.v01.Adapter.CowAdapter
 import com.example.v01.DataModel
 import com.example.v01.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import de.hdodenhof.circleimageview.CircleImageView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 //    private lateinit var cuacaAdapter : WeatherAdapter
     private lateinit var listSapi:RecyclerView
     private lateinit var createBTN: FloatingActionButton
+    private lateinit var userprofile : CircleImageView
 //    private lateinit var suhu:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +49,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupView(){
         listSapi = findViewById(R.id.RV_Sapi)
         createBTN = findViewById(R.id.create_btn)
+        userprofile = findViewById(R.id.userdetails)
 //        suhu = findViewById(R.id.temperatur)
 //        suhu.setText(cuacaAdapter.cuaca.temp.toString())
     }
@@ -64,6 +69,9 @@ class MainActivity : AppCompatActivity() {
     private fun setupListener(){
         createBTN.setOnClickListener {
             startActivity(Intent(this, createInfo::class.java))
+        }
+        userprofile.setOnClickListener {
+            startActivity(Intent(this,UserDetails::class.java))
         }
     }
 

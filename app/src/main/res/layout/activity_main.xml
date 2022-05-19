@@ -34,6 +34,7 @@
             android:theme="?attr/actionBarTheme">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userdetails"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="8dp"
@@ -42,6 +43,8 @@
             </de.hdodenhof.circleimageview.CircleImageView>
 
         </androidx.appcompat.widget.Toolbar>
+
+
 
 
     </com.google.android.material.appbar.AppBarLayout>
