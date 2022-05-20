@@ -3,6 +3,7 @@ package com.example.v01.Main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -33,6 +34,7 @@ class viewInfo : AppCompatActivity() {
     private lateinit var updatebtn: Button
     private lateinit var deletebtn: ImageView
     private lateinit var setting: Toolbar
+    var sharedPreference:SharedPreference? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +70,14 @@ class viewInfo : AppCompatActivity() {
         tvcatatan.setText(sapi.catatan)
         tvliveact.setText(sapi.live_act)
         tvliveloc.setText(sapi.live_loc)
+
+        sharedPreference = SharedPreference(this)
+        val login_status = sharedPreference!!.getPreferenceString("login_status")
+
+        if (login_status != "1"){
+            deletebtn.visibility = View.INVISIBLE
+            updatebtn.setEnabled(false)
+        }
     }
 
     private fun setupListener(){

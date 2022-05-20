@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.v01.MA2.MainActivity2
 import com.example.v01.R
 
 private lateinit var inputname : EditText
@@ -30,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }else if (login_status.toString() == "2"){
-            val intent = Intent(this, MainActivity2::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -68,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
                  sharedPreference!!.save_string("login_status","2")
 
                 startActivity(
-                    Intent(this@LoginActivity, MainActivity2::class.java)
+                    Intent(this@LoginActivity, MainActivity::class.java)
                 )
                 finish()
             } else {

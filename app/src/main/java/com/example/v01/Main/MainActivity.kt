@@ -3,6 +3,7 @@ package com.example.v01.Main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var listSapi:RecyclerView
     private lateinit var createBTN: FloatingActionButton
     private lateinit var userprofile : CircleImageView
+    var sharedPreference:SharedPreference? = null
 //    private lateinit var suhu:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,9 +49,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupView(){
+        sharedPreference = SharedPreference(this)
+        val login_status = sharedPreference!!.getPreferenceString("login_status")
+
         listSapi = findViewById(R.id.RV_Sapi)
         createBTN = findViewById(R.id.create_btn)
         userprofile = findViewById(R.id.userdetails)
+
+        if (login_status != "1"){
+            createBTN.visibility = View.INVISIBLE
+        }
 //        suhu = findViewById(R.id.temperatur)
 //        suhu.setText(cuacaAdapter.cuaca.temp.toString())
     }

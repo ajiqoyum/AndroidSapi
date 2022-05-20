@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.V01">
         <activity
-            android:name=".MA2.UserDetails2"
-            android:exported="false" />
-        <activity
             android:name=".Main.UserDetails"
             android:exported="false" />
         <activity
@@ -35,12 +32,6 @@
             android:exported="false" />
         <activity
             android:name=".Main.MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MA2.MainActivity2"
-            android:exported="false" />
-        <activity
-            android:name=".MA2.viewInfo2"
             android:exported="false" />
     </application>
 
