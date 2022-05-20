@@ -91,7 +91,7 @@ class MainActivity2 : AppCompatActivity() {
 
     private fun setupListener(){
         userprofile.setOnClickListener {
-            startActivity(Intent(this, UserDetails2::class.java))
+            startActivity(Intent(this, UserDetails::class.java))
         }
     }
 
