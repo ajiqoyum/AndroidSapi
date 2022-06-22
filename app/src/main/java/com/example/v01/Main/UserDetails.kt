@@ -14,11 +14,15 @@ class UserDetails : AppCompatActivity() {
     lateinit var hakAkses : TextView
     lateinit var uname : TextView
     lateinit var pass : TextView
+    private lateinit var setting: androidx.appcompat.widget.Toolbar
     var sharedPreference:SharedPreference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_details)
+        setting = findViewById(R.id.toolbarmy)
+        setSupportActionBar(setting)
+        supportActionBar!!.title = "User Info"
         setupView()
         setupListener()
     }
