@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Main.viewInfo"
-    android:background="@color/white">
+    android:background="#1bf587">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/toolbar_atas"
@@ -108,7 +108,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_atas"
-        app:srcCompat="@drawable/hapus_ic" />
+        app:srcCompat="@drawable/ic_hapus" />
 
     <ImageView
         android:id="@+id/imageView10"
@@ -172,10 +172,14 @@
 
     <TextView
         android:id="@+id/tv_catatan"
-        android:layout_width="363dp"
-        android:layout_height="109dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="377dp"
+        android:layout_height="119dp"
+        android:background="@drawable/rounded_tv"
+        android:paddingStart="7dp"
+        android:paddingTop="2dp"
+        android:paddingEnd="7dp"
         android:text="Perlu dilakukan vaksinasi bulan depan"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -185,6 +189,7 @@
         android:layout_height="39dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="12dp"
+        android:backgroundTint="#0cc242"
         android:text="Update"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_catatan" />

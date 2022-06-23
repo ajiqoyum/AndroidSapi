@@ -195,6 +195,7 @@
         android:layout_width="367dp"
         android:layout_height="42dp"
         android:layout_marginBottom="48dp"
+        android:backgroundTint="#0cc242"
         android:text="Simpan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

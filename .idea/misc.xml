@@ -4,12 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Data Aji/Kuliah/Magang/RCT/V01/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2075" />
+        <entry key="..\:/Data_Aji/Kuliah/Magang/RCT/V01/app/src/main/res/drawable/editstyle.xml" value="0.231" />
+        <entry key="..\:/Data_Aji/Kuliah/Magang/RCT/V01/app/src/main/res/drawable/ic_hapus.xml" value="0.23" />
+        <entry key="..\:/Data_Aji/Kuliah/Magang/RCT/V01/app/src/main/res/drawable/rounded_tv.xml" value="0.23" />
+        <entry key="..\:/Data_Aji/Kuliah/Magang/RCT/V01/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Data_Aji/Kuliah/Magang/RCT/V01/app/src/main/res/layout/activity_main.xml" value="0.38016528925619836" />
         <entry key="..\:/Data_Aji/Kuliah/Magang/RCT/V01/app/src/main/res/layout/activity_main2.xml" value="0.25" />
         <entry key="..\:/Data_Aji/Kuliah/Magang/RCT/V01/app/src/main/res/layout/activity_update_real.xml" value="0.22447916666666667" />
         <entry key="..\:/Data_Aji/Kuliah/Magang/RCT/V01/app/src/main/res/layout/activity_user_details.xml" value="0.22744128553770088" />
         <entry key="..\:/Data_Aji/Kuliah/Magang/RCT/V01/app/src/main/res/layout/activity_user_details2.xml" value="0.22447916666666667" />
-        <entry key="..\:/Data_Aji/Kuliah/Magang/RCT/V01/app/src/main/res/layout/activity_view_info.xml" value="0.22447916666666667" />
+        <entry key="..\:/Data_Aji/Kuliah/Magang/RCT/V01/app/src/main/res/layout/activity_view_info.xml" value="0.33" />
         <entry key="..\:/Data_Aji/Kuliah/Magang/RCT/V01/app/src/main/res/layout/userdetails.xml" value="0.25" />
         <entry key="..\:/RCT/V01/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.267" />
         <entry key="..\:/RCT/V01/app/src/main/res/drawable/aktivitas_ic.xml" value="0.327" />
