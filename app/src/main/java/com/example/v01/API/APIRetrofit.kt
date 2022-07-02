@@ -1,9 +1,10 @@
-package com.example.v01
+package com.example.v01.API
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class APIRetrofit {
     val endpoint: APIEndpoint
@@ -16,8 +17,9 @@ class APIRetrofit {
                 .build()
 
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://192.168.1.18/v01/")
+                .baseUrl("https://8p23rmeup2.execute-api.us-west-2.amazonaws.com/test/")
                 .client(client)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 

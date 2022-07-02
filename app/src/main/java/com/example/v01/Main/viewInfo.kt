@@ -1,5 +1,6 @@
 package com.example.v01.Main
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,10 +10,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import com.example.v01.APIRetrofit
-import com.example.v01.DataModel
-import com.example.v01.R
-import com.example.v01.SubmitModel
+import com.example.v01.*
+import com.example.v01.API.APIRetrofit
+import com.example.v01.API.DataModel
+import com.example.v01.API.SubmitModel
+import com.example.v01.API.deleteJson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -68,15 +70,15 @@ class viewInfo : AppCompatActivity() {
         tvjenis.setText(sapi.jenis)
         tvkondisi.setText(sapi.kondisi)
         tvcatatan.setText(sapi.catatan)
-        tvliveact.setText(sapi.live_act)
-        tvliveloc.setText(sapi.live_loc)
+        tvliveact.setText(sapi.liveAct)
+        tvliveloc.setText(sapi.liveLoc)
 
         sharedPreference = SharedPreference(this)
         val login_status = sharedPreference!!.getPreferenceString("login_status")
 
         if (login_status != "1"){
             deletebtn.visibility = View.INVISIBLE
-            updatebtn.setEnabled(false)
+//            updatebtn.setEnabled(false)
         }
     }
 
@@ -89,24 +91,36 @@ class viewInfo : AppCompatActivity() {
         }
 
         deletebtn.setOnClickListener {
-            api.delete(tvid.text.toString())
-                .enqueue(object: Callback<SubmitModel>{
-                    override fun onResponse(
-                        call: Call<SubmitModel>,
-                        response: Response<SubmitModel>
-                    ) {
-                        if(response.isSuccessful){
-                            val submit = response.body()
-                            Toast.makeText(applicationContext, submit!!.toString(),Toast.LENGTH_SHORT).show()
-                            finish()
-                        }
-                    }
+            val builder = AlertDialog.Builder(this@viewInfo)
+            builder.setMessage("Apakah anda yakin ingin menghapus data?")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { dialog, id ->
+                    var deleto = deleteJson()
+                    deleto.id = sapi.id
+                    api.deletejson(deleto)
+                        .enqueue(object : Callback<SubmitModel>{
+                            override fun onResponse(
+                                call: Call<SubmitModel>,
+                                response: Response<SubmitModel>
+                            ) {
+                                if (response.isSuccessful){
+                                    val submit = response.body()
+                                    Toast.makeText(applicationContext, "Data dihapus", Toast.LENGTH_SHORT).show()
+                                    finish()
+                                }
+                            }
 
-                    override fun onFailure(call: Call<SubmitModel>, t: Throwable) {
-                        finish()
-                    }
+                            override fun onFailure(call: Call<SubmitModel>, t: Throwable) {
+                                finish()
+                            }
 
-                })
+                        })
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    dialog.dismiss()
+                }
+            val alert = builder.create()
+            alert.show()
         }
     }
 

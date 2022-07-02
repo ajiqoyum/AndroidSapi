@@ -4,13 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
-import com.example.v01.APIRetrofit
+import com.example.v01.API.APIRetrofit
 import com.example.v01.Adapter.CowAdapter
-import com.example.v01.DataModel
+import com.example.v01.API.DataModel
 import com.example.v01.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import de.hdodenhof.circleimageview.CircleImageView
@@ -80,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, createInfo::class.java))
         }
         userprofile.setOnClickListener {
-            startActivity(Intent(this,UserDetails::class.java))
+            startActivity(Intent(this, User::class.java))
         }
     }
 

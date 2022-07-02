@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Main.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RV_Sapi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weatherlayout"
-        app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/layoutsapi" />
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/toolbar_atas"
         android:layout_width="0dp"
@@ -56,16 +45,29 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RV_Sapi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="?attr/actionBarSize"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weatherlayout"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/layoutsapi" />
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/create_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/ic_add"
         android:tint="#2EDB5B"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-         />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
         android:id="@+id/weatherlayout"

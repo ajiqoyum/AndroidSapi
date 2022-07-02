@@ -44,17 +44,17 @@ class UserDetails : AppCompatActivity() {
         if (login_status == "2") {
             hakAkses.setText("Monitor")
             uname.setText("worker")
-            pass.setText("1234")
+            pass.setText("123")
         }
     }
 
     private fun setupListener() {
         logoutBTN.setOnClickListener {
             sharedPreference!!.clearSharedPreference()
+            finish()
             Toast.makeText(this,"User LogOut Successfully.", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 }

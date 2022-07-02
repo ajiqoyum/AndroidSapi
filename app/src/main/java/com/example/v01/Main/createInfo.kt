@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
-import com.example.v01.APIRetrofit
+import com.example.v01.API.APIRetrofit
 import com.example.v01.R
-import com.example.v01.SubmitModel
+import com.example.v01.API.RequestRaw
+import com.example.v01.API.SubmitModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +25,7 @@ class createInfo : AppCompatActivity() {
     private lateinit var editjenis: EditText
     private lateinit var radioJK: RadioGroup
     private lateinit var setting: Toolbar
+    private lateinit var editid: EditText
     private var JK = "Jantan"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +47,8 @@ class createInfo : AppCompatActivity() {
         simpanBtn = findViewById(R.id.simpanBtn)
         editjenis = findViewById(R.id.jenisInp)
         radioJK = findViewById(R.id.jkRdo)
+        editid = findViewById(R.id.editid)
+
 
         radioJK.setOnCheckedChangeListener { radioGroup, i ->
             when(i){
@@ -61,8 +65,17 @@ class createInfo : AppCompatActivity() {
     private fun setupListener() {
         simpanBtn.setOnClickListener {
             if(editname.text.toString().isNotEmpty()){
+                var requestJson = RequestRaw()
+                requestJson.id = editname.text.toString()
+                requestJson.namacow = editname.text.toString()
+                requestJson.berat = editberat.text.toString()
+                requestJson.jenis = editjenis.text.toString()
+                requestJson.jkcow = JK
+                requestJson.catatan = editcatatan.text.toString()
+                requestJson.kondisi = editkondisi.text.toString()
+                requestJson.umur = editumur.text.toString()
                 Log.e("createinfo", editname.text.toString())
-                api.create(editname.text.toString(),JK,editumur.text.toString(),editberat.text.toString(),editjenis.text.toString(),editkondisi.text.toString(),editcatatan.text.toString())
+                api.getRaw(requestJson)
                     .enqueue(object : Callback<SubmitModel>{
                         override fun onResponse(
                             call: Call<SubmitModel>,
@@ -70,7 +83,7 @@ class createInfo : AppCompatActivity() {
                         ) {
                             if(response.isSuccessful){
                                 val submit = response.body()
-                                Toast.makeText(applicationContext, submit!!.message, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(applicationContext, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show()
                                 finish()
                             }
                         }

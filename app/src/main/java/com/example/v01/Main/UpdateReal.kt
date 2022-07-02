@@ -1,13 +1,12 @@
 package com.example.v01.Main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
-import com.example.v01.APIRetrofit
-import com.example.v01.DataModel
-import com.example.v01.R
-import com.example.v01.SubmitModel
+import com.example.v01.*
+import com.example.v01.API.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +24,7 @@ class UpdateReal : AppCompatActivity() {
     private lateinit var updatejenis: EditText
     private lateinit var radioJK: RadioGroup
     private lateinit var setting: Toolbar
+    var sharedPreference:SharedPreference? = null
 
     private var JK = "Jantan"
 
@@ -59,6 +59,18 @@ class UpdateReal : AppCompatActivity() {
         } else {
             radioJK.findViewById<RadioButton>(R.id.betinaRdoUpdt).setChecked(true)
         }
+
+        sharedPreference = SharedPreference(this)
+        val login_status = sharedPreference!!.getPreferenceString("login_status")
+        if (login_status != "1"){
+            updatename.setEnabled(false)
+            updateberat.setEnabled(false)
+            updatejenis.setEnabled(false)
+            updatekondisi.setEnabled(false)
+            updateumur.setEnabled(false)
+            radioJK.setEnabled(false)
+        }
+
         radioJK.setOnCheckedChangeListener { radioGroup, i ->
             when(i){
                 R.id.jantanRdoUpdt ->{
@@ -72,25 +84,75 @@ class UpdateReal : AppCompatActivity() {
     }
 
     private fun setupListener() {
-        updateBtn.setOnClickListener {
-            api.update(sapi.id!!, updatename.text.toString(),JK,updateumur.text.toString(),updateberat.text.toString(),updatejenis.text.toString(),updatekondisi.text.toString(),updatecatatan.text.toString())
-                .enqueue(object: Callback<SubmitModel> {
-                    override fun onResponse(
-                        call: Call<SubmitModel>,
-                        response: Response<SubmitModel>
-                    ) {
-                        if (response.isSuccessful){
-                            val submit = response.body()
-                            Toast.makeText(applicationContext, submit!!.message, Toast.LENGTH_SHORT).show()
+        val login_status = sharedPreference!!.getPreferenceString("login_status")
+        if (login_status != "1") {
+            var updateworker = updateJson()
+            updateworker.id = sapi.id
+            updateworker.updateKey = "catatan"
+            updateworker.updateValue = updatecatatan.text.toString()
+            updateBtn.setOnClickListener {
+                api.UpdateCttn(updateworker)
+                    .enqueue(object : Callback<SubmitModel> {
+                        override fun onResponse(
+                            call: Call<SubmitModel>,
+                            response: Response<SubmitModel>
+                        ) {
+                            if (response.isSuccessful) {
+                                val submit = response.body()
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Catatan Disimpan",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                startActivity(
+                                    Intent(this@UpdateReal, MainActivity::class.java)
+                                )
+                            }
+                        }
+
+                        override fun onFailure(call: Call<SubmitModel>, t: Throwable) {
                             finish()
                         }
-                    }
 
-                    override fun onFailure(call: Call<SubmitModel>, t: Throwable) {
-                        finish()
-                    }
+                    })
+            }
+        } else {
+            updateBtn.setOnClickListener {
+                var requestJson = RequestRaw()
+                requestJson.id = sapi.id
+                requestJson.namacow = updatename.text.toString()
+                requestJson.jkcow = JK
+                requestJson.umur = updateumur.text.toString()
+                requestJson.kondisi = updatekondisi.text.toString()
+                requestJson.berat = updateberat.text.toString()
+                requestJson.jenis = updatejenis.text.toString()
+                requestJson.catatan = updatecatatan.text.toString()
+                api.Update(requestJson)
+                    .enqueue(object : Callback<SubmitModel> {
+                        override fun onResponse(
+                            call: Call<SubmitModel>,
+                            response: Response<SubmitModel>
+                        ) {
+                            if (response.isSuccessful) {
+                                val submit = response.body()
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Data berhasil di Update",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                finish()
+                                startActivity(
+                                    Intent(this@UpdateReal, MainActivity::class.java)
+                                )
+                            }
+                        }
 
-                })
+                        override fun onFailure(call: Call<SubmitModel>, t: Throwable) {
+                            finish()
+                        }
+
+                    })
+            }
         }
     }
 

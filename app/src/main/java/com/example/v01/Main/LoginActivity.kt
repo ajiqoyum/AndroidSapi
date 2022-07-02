@@ -43,8 +43,11 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupListener() {
         loginbtn.setOnClickListener {
-            val username1 = inputname.text.toString()
-            val password1 = inputpass.text.toString()
+            var username1 = inputname.text.toString()
+            var password1 = inputpass.text.toString()
+
+            username1 = username1.replace(" ", "")
+            password1 = password1.replace(" ","")
 
             if (username1.equals("")&& password1.equals("")){
                 Toast.makeText(applicationContext, "Masukkan Info", Toast.LENGTH_SHORT).show()

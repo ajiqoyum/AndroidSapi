@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Main.viewInfo"
-    android:background="#1bf587">
+    android:background="#5CFAAA">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/toolbar_atas"
@@ -108,9 +108,10 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_atas"
-        app:srcCompat="@drawable/ic_hapus" />
+        app:srcCompat="@drawable/ic_delete" />
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/imageView10"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -235,6 +236,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_jenis" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -245,6 +247,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_catatan" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

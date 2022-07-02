@@ -132,6 +132,15 @@
 
         <TextView
             android:visibility="gone"
+            android:id="@+id/id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:visibility="gone"
             android:id="@+id/catatanCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
