@@ -65,6 +65,7 @@ class createInfo : AppCompatActivity() {
     private fun setupListener() {
         simpanBtn.setOnClickListener {
             if(editname.text.toString().isNotEmpty()){
+                //inisialisasi item yang akan ditambahkan
                 var requestJson = RequestRaw()
                 requestJson.id = editname.text.toString()
                 requestJson.namacow = editname.text.toString()
@@ -75,6 +76,7 @@ class createInfo : AppCompatActivity() {
                 requestJson.kondisi = editkondisi.text.toString()
                 requestJson.umur = editumur.text.toString()
                 Log.e("createinfo", editname.text.toString())
+                //API Call
                 api.getRaw(requestJson)
                     .enqueue(object : Callback<SubmitModel>{
                         override fun onResponse(

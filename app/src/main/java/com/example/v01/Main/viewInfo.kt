@@ -1,9 +1,13 @@
 package com.example.v01.Main
 
 import android.app.AlertDialog
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -15,6 +19,8 @@ import com.example.v01.API.APIRetrofit
 import com.example.v01.API.DataModel
 import com.example.v01.API.SubmitModel
 import com.example.v01.API.deleteJson
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -88,15 +94,19 @@ class viewInfo : AppCompatActivity() {
                 Intent(this@viewInfo, UpdateReal::class.java)
                     .putExtra("sapi", sapi)
             )
+
         }
 
         deletebtn.setOnClickListener {
+            //dialog konfirmasi delete item
             val builder = AlertDialog.Builder(this@viewInfo)
             builder.setMessage("Apakah anda yakin ingin menghapus data?")
                 .setCancelable(false)
                 .setPositiveButton("Yes") { dialog, id ->
+                    //inisaialisasi id item yang ingin dihapus
                     var deleto = deleteJson()
                     deleto.id = sapi.id
+                    //API call
                     api.deletejson(deleto)
                         .enqueue(object : Callback<SubmitModel>{
                             override fun onResponse(

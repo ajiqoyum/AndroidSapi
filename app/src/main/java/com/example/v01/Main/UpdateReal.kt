@@ -84,12 +84,15 @@ class UpdateReal : AppCompatActivity() {
     }
 
     private fun setupListener() {
+        //Untuk Hak Akses selain admin hanya dapat mengupdate satu item
         val login_status = sharedPreference!!.getPreferenceString("login_status")
         if (login_status != "1") {
+            //init item yang ingin di ubah (catatan) dan inputannya
             var updateworker = updateJson()
             updateworker.id = sapi.id
             updateworker.updateKey = "catatan"
             updateworker.updateValue = updatecatatan.text.toString()
+            //API call
             updateBtn.setOnClickListener {
                 api.UpdateCttn(updateworker)
                     .enqueue(object : Callback<SubmitModel> {
@@ -118,6 +121,7 @@ class UpdateReal : AppCompatActivity() {
             }
         } else {
             updateBtn.setOnClickListener {
+                //init item yang ingin diubah
                 var requestJson = RequestRaw()
                 requestJson.id = sapi.id
                 requestJson.namacow = updatename.text.toString()
@@ -127,6 +131,7 @@ class UpdateReal : AppCompatActivity() {
                 requestJson.berat = updateberat.text.toString()
                 requestJson.jenis = updatejenis.text.toString()
                 requestJson.catatan = updatecatatan.text.toString()
+                //API call
                 api.Update(requestJson)
                     .enqueue(object : Callback<SubmitModel> {
                         override fun onResponse(

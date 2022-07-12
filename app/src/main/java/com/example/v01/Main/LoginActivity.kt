@@ -23,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
         setupview()
         setupListener()
 
+        //sharedpreference untuk mengetahui user mana yang menggunakan aplikasi
         val login_status = sharedPreference!!.getPreferenceString("login_status")
         if (login_status.toString()=="1"){
             val intent = Intent(this, MainActivity::class.java)

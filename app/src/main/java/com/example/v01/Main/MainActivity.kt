@@ -1,22 +1,35 @@
 package com.example.v01.Main
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.example.v01.API.APIRetrofit
 import com.example.v01.Adapter.CowAdapter
 import com.example.v01.API.DataModel
 import com.example.v01.R
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.FirebaseApp
+import com.google.firebase.installations.FirebaseInstallations
+import com.google.firebase.messaging.FirebaseMessaging
 import de.hdodenhof.circleimageview.CircleImageView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+
+    //   !!!Weather API masih belum bisa dipakai!!!
 
     private lateinit var setting:Toolbar
     private val api by lazy { APIRetrofit().endpoint }
@@ -62,6 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupList(){
+        //Klik item recyclerview menuju activity viewInfo
         sapiAdapter = CowAdapter(arrayListOf(), object : CowAdapter.OnAdapterListener{
             override fun onClick(sapi: DataModel.Data) {
                 startActivity(
@@ -71,6 +85,16 @@ class MainActivity : AppCompatActivity() {
             }
         })
         listSapi.adapter =sapiAdapter
+
+        //Kode untuk mendapatkan Device Token untuk notifikasi
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if(!task.isSuccessful) {
+                return@addOnCompleteListener
+            }
+            val token = task.result
+
+            Log.e("Token   ======>", token)
+        }
     }
 
     private fun setupListener(){
