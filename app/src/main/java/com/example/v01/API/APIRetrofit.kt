@@ -18,7 +18,7 @@ class APIRetrofit {
 
             val retrofit = Retrofit.Builder()
                     //alamat API
-                .baseUrl("https://8p23rmeup2.execute-api.us-west-2.amazonaws.com/test/")
+                .baseUrl("https://alamat-api/api/")
                 .client(client)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
