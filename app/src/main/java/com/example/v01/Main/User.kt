@@ -23,7 +23,6 @@ class User : AppCompatActivity() {
         detaile.setOnClickListener {
             val intent = Intent(this, UserDetails::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            finish()
             startActivity(intent)
         }
     }
